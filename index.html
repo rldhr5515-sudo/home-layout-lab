@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v18</title>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v19</title>
 <style>
 :root{font-family:system-ui,"Noto Sans KR",sans-serif;color:#292c27;background:#f6f5f1}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e5de;padding:20px max(18px,calc((100% - 1200px)/2))}h1{font-size:clamp(23px,4vw,32px);margin:0 0 5px}header p{margin:0;color:#777;font-size:14px}main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px}.panel,#workspace{background:#fff;border:1px solid #e7e4dd;border-radius:15px;padding:15px;margin-bottom:13px;min-width:0}h2{font-size:16px;margin:0 0 12px}.hint{font-size:12px;color:#777;line-height:1.6;margin:8px 0 0}label{display:block;font-size:13px;color:#555;margin:8px 0}input,button{font:inherit}input{width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px;background:#fff}button{border:1px solid #ddd9d0;background:#fff;border-radius:9px;padding:9px 11px;cursor:pointer}button.primary{background:#344d3d;color:#fff;border-color:#344d3d}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.actions button{font-size:13px}.step{font-size:12px;font-weight:700;color:#657568;margin-bottom:5px}#canvasWrap{width:100%;overflow:hidden;border-radius:10px;background:#eeece6;border:1px solid #e3dfd6}canvas{display:block;width:100%;height:auto;touch-action:none}#status{font-size:12px;color:#666;margin:9px 0}.notice{padding:10px 12px;border-radius:9px;background:#f4f5f1;color:#5e655c;font-size:12px;line-height:1.55;margin:10px 0}.selected{font-size:13px;color:#555;min-height:20px}.view-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0}.view-tools button{min-width:42px}.view-tools .zoom-label{font-size:12px;color:#666;min-width:48px;text-align:center}.view-tools button:disabled{opacity:.4;cursor:not-allowed}#share{background:#edf3ee;border-color:#cbd8cd;color:#344d3d;font-weight:650}.zone-help{font-size:12px;line-height:1.55;color:#666;margin:8px 0 0}.zone-active{background:#fff4df;color:#805516}.collision-note{background:#fff0ed;color:#9b3328;border:1px solid #f0c5bd;padding:9px 11px;border-radius:9px;font-size:12px;line-height:1.5;margin:8px 0}.collision-note:empty{display:none}#total{font-size:21px;font-weight:750}.furniture-list{display:grid;gap:6px;margin-top:8px}.furniture-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px;border:1px solid #e7e4dd;border-radius:9px;background:#fff}.furniture-row.active{border:2px solid #2059a5;background:#f3f7fc}.swatch{width:18px;height:18px;border-radius:5px;border:1px solid #aaa;flex:none}.furniture-row small{display:block;color:#777;font-size:11px}.product-card{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:center;border:1px solid #e7e4dd;border-radius:10px;padding:8px}.product-card img{width:58px;height:58px;object-fit:cover;border-radius:7px;background:#f0eee8}.product-card .product-actions{grid-column:1/-1;display:flex;gap:6px}.product-card .product-actions button{flex:1;font-size:12px;padding:7px}.pill{display:inline-block;background:#edf1eb;border-radius:30px;padding:3px 8px;font-size:11px;color:#49614e;margin-left:5px}@media(max-width:800px){main{grid-template-columns:1fr;margin:10px auto;padding:0 10px;gap:10px}.side{order:2}#workspace{order:1;padding:10px}.panel{padding:12px}header{padding:15px 14px}.view-tools{gap:6px}.view-tools button{padding:10px 12px;min-height:42px}button,input,select{font-size:16px}#canvasWrap{touch-action:none}}
 </style></head><body>
@@ -15,7 +15,14 @@
 <label>가격 (원)<input id="productPrice" type="number" min="0" value="0"></label>
 <label>상품 종류<select id="productType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="table">식탁</option><option value="sofa">소파</option><option value="bed">침대</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타</option></select></label>
 <label>상품 사진 선택<input id="productImageFile" type="file" accept="image/png,image/jpeg,image/webp"></label>
-<p class="hint" id="imageUploadStatus">컴퓨터나 휴대폰에서 소파 사진 파일을 선택하세요.</p>
+<p class="hint" id="imageUploadStatus">사진을 선택한 뒤 배경 제거를 눌러보세요. 흰색·단색 배경 사진에서 가장 잘 작동해요.</p>
+<div class="actions" style="margin:8px 0">
+ <button type="button" id="removeBgBtn" disabled>✂ 배경 제거하기</button>
+ <button type="button" id="restoreOriginalBtn" disabled>원본 사진으로</button>
+</div>
+<div id="productImagePreview" style="display:none;margin:8px 0;padding:12px;border:1px dashed #c9c5bb;border-radius:10px;background-color:#f1f0ec;background-image:linear-gradient(45deg,#e5e3de 25%,transparent 25%),linear-gradient(-45deg,#e5e3de 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e5e3de 75%),linear-gradient(-45deg,transparent 75%,#e5e3de 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0">
+ <img id="productImagePreviewImg" alt="상품 사진 미리보기" style="display:block;max-width:100%;max-height:180px;margin:auto;object-fit:contain">
+</div>
 <button class="primary" id="saveProduct" style="width:100%">상품 등록하기</button>
 <p class="hint">사진 파일만 선택하면 돼요. 이미지 주소나 구매 페이지 주소를 입력할 필요가 없어요.</p>
 <div id="productCatalog" class="furniture-list"><p class="hint">등록한 상품이 여기에 표시돼요.</p></div></section>
@@ -221,10 +228,14 @@ function placeProduct(index){
  if(!spot){alert('이 상품을 배치할 공간이 없어요. 방 영역을 넓히거나 상품 크기를 확인해 주세요.');return}
  pushHistory();it.x=spot.x;it.y=spot.y;items.push(it);selected=items.length-1;selectedSet=new Set([selected]);draw();$('status').textContent='상품을 도면에 배치했어요.'
 }
-let selectedProductImageData='';
+let selectedProductImageData='',originalProductImageData='';
+function showProductPreview(src){
+ const wrap=$('productImagePreview'),img=$('productImagePreviewImg');
+ img.src=src;wrap.style.display='block';
+}
 $('productImageFile').addEventListener('change',()=>{
  const file=$('productImageFile').files && $('productImageFile').files[0];
- if(!file){selectedProductImageData='';return}
+ if(!file){selectedProductImageData='';originalProductImageData='';return}
  if(!['image/png','image/jpeg','image/webp'].includes(file.type)){alert('PNG, JPG, WEBP 이미지 파일만 선택해 주세요.');$('productImageFile').value='';return}
  if(file.size>10*1024*1024){alert('원본 사진은 10MB 이하로 선택해 주세요.');$('productImageFile').value='';return}
  const reader=new FileReader();
@@ -234,20 +245,85 @@ $('productImageFile').addEventListener('change',()=>{
    const scale=Math.min(1,1200/Math.max(im.width,im.height));
    const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));
    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-   selectedProductImageData=c.toDataURL('image/jpeg',0.82);
-   $('imageUploadStatus').textContent='✓ 사진 선택 완료! 상품 등록 후 도면에 표시돼요.';
+   originalProductImageData=c.toDataURL('image/jpeg',0.9);
+   selectedProductImageData=originalProductImageData;
+   $('removeBgBtn').disabled=false;$('restoreOriginalBtn').disabled=false;
+   $('imageUploadStatus').textContent='✓ 사진 선택 완료. 바탕이 흰색이나 단색이면 배경 제거를 시도해 보세요.';
+   showProductPreview(selectedProductImageData);
   };
   im.onerror=()=>{$('imageUploadStatus').textContent='이미지를 읽지 못했어요. 다른 사진을 선택해 주세요.'};
   im.src=reader.result;
  };
  reader.readAsDataURL(file);
 });
+$('restoreOriginalBtn').onclick=()=>{
+ if(!originalProductImageData)return;
+ selectedProductImageData=originalProductImageData;showProductPreview(selectedProductImageData);
+ $('imageUploadStatus').textContent='원본 사진으로 되돌렸어요.';
+};
+$('removeBgBtn').onclick=async()=>{
+ if(!originalProductImageData)return;
+ const btn=$('removeBgBtn');btn.disabled=true;btn.textContent='배경 제거 중...';
+ $('imageUploadStatus').textContent='사진 가장자리의 흰색·단색 배경을 분석하고 있어요.';
+ try{
+  const im=new Image();im.src=originalProductImageData;
+  await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject});
+  const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;
+  const cx=c.getContext('2d',{willReadFrequently:true});cx.drawImage(im,0,0);
+  const frame=cx.getImageData(0,0,c.width,c.height),d=frame.data,w=c.width,h=c.height,n=w*h;
+  // Estimate a mostly uniform background from small patches in the four corners.
+  const corners=[[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
+  const samples=[];
+  for(const [px,py] of corners)for(let yy=-1;yy<=1;yy++)for(let xx=-1;xx<=1;xx++){
+   const x=Math.max(0,Math.min(w-1,px+xx)),y=Math.max(0,Math.min(h-1,py+yy)),k=(y*w+x)*4;
+   samples.push([d[k],d[k+1],d[k+2]]);
+  }
+  const bg=[0,1,2].map(ch=>samples.reduce((a,v)=>a+v[ch],0)/samples.length);
+  const cornerSpread=Math.max(...samples.map(v=>Math.hypot(v[0]-bg[0],v[1]-bg[1],v[2]-bg[2])));
+  if(cornerSpread>105)throw new Error('사진 모서리 배경이 일정하지 않아요. 흰색 또는 단색 배경 사진을 사용해 주세요.');
+  const seen=new Uint8Array(n),queue=new Int32Array(n),alpha=new Uint8Array(n);
+  let head=0,tail=0;
+  const threshold=76,soft=28;
+  function add(x,y){
+   if(x<0||y<0||x>=w||y>=h)return;
+   const idx=y*w+x;if(seen[idx])return;
+   const k=idx*4,dist=Math.hypot(d[k]-bg[0],d[k+1]-bg[1],d[k+2]-bg[2]);
+   if(dist<=threshold){seen[idx]=1;queue[tail++]=idx;}
+  }
+  // Flood-fill only background connected to the image boundary, preserving enclosed light details.
+  for(let x=0;x<w;x++){add(x,0);add(x,h-1)}
+  for(let y=0;y<h;y++){add(0,y);add(w-1,y)}
+  while(head<tail){
+   const idx=queue[head++],x=idx%w,y=(idx/w)|0;
+   add(x-1,y);add(x+1,y);add(x,y-1);add(x,y+1);
+  }
+  let removed=0;
+  for(let i=0;i<n;i++){
+   const k=i*4;
+   if(seen[i]){d[k+3]=0;removed++;}
+   else{
+    const dist=Math.hypot(d[k]-bg[0],d[k+1]-bg[1],d[k+2]-bg[2]);
+    if(dist<threshold+soft){
+     const a=Math.max(0,Math.min(1,(dist-threshold)/soft));
+     d[k+3]=Math.round(d[k+3]*a);
+    }
+   }
+  }
+  if(removed<n*.005)throw new Error('배경을 충분히 구분하지 못했어요. 흰색·단색 배경 사진을 사용하거나 원본으로 되돌려 주세요.');
+  cx.putImageData(frame,0,0);
+  selectedProductImageData=c.toDataURL('image/png');
+  showProductPreview(selectedProductImageData);
+  $('imageUploadStatus').textContent='✓ 배경 제거 완료! 가장자리와 색상이 비슷한 가구 부분은 일부 잘릴 수 있으니 미리보기를 확인해 주세요.';
+ }catch(err){
+  $('imageUploadStatus').textContent=err.message||'배경 제거에 실패했어요. 원본 사진을 유지할게요.';
+ }finally{btn.disabled=false;btn.textContent='✂ 배경 제거하기'}
+};
 $('saveProduct').onclick=()=>{
  const name=$('productName').value.trim(),w=+$('productW').value,h=+$('productH').value,price=+$('productPrice').value;
  if(!name){alert('상품명을 입력해 주세요.');return}
  if(w<10||h<10||w>1500||h>1500||price<0){alert('상품 크기와 가격을 확인해 주세요.');return}
  products.push({id:'product-'+Date.now(),name,w,h,price,image:'',imageData:selectedProductImageData,url:'',type:$('productType').value});
- saveProducts();selectedProductImageData='';$('productImageFile').value='';$('imageUploadStatus').textContent='컴퓨터나 휴대폰에서 소파 사진 파일을 선택하세요.';$('productName').value='';
+ saveProducts();selectedProductImageData='';originalProductImageData='';$('productImageFile').value='';$('productImagePreview').style.display='none';$('productImagePreviewImg').src='';$('removeBgBtn').disabled=true;$('restoreOriginalBtn').disabled=true;$('imageUploadStatus').textContent='사진을 선택한 뒤 배경 제거를 눌러보세요. 흰색·단색 배경 사진에서 가장 잘 작동해요.';$('productName').value='';
 };
 function update(){$('selectedInfo').textContent=selected<0?'도면에서 가구를 선택해 주세요.':(selectedSet.size>1?selectedSet.size+'개 가구 선택됨':items[selected].name+' 선택됨');if(selected>=0){const it=items[selected];$('editW').value=it.w;$('editH').value=it.h;$('editName').value=it.name;$('editPrice').value=it.price;$('editColor').value=it.color||'#d7c4ad';$('editShape').value=it.shape||'rect';$('editType').value=it.type||'custom'}const collisionInfo=getCollisionSet();
 $('summary').textContent='배치된 가구 '+items.length+'개'+(collisionInfo.pairs.length?' · 겹침 '+collisionInfo.pairs.length+'곳':' · 가구 겹침 없음');
