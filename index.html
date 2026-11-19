@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v13</title>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v17</title>
 <style>
 :root{font-family:system-ui,"Noto Sans KR",sans-serif;color:#292c27;background:#f6f5f1}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e5de;padding:20px max(18px,calc((100% - 1200px)/2))}h1{font-size:clamp(23px,4vw,32px);margin:0 0 5px}header p{margin:0;color:#777;font-size:14px}main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px}.panel,#workspace{background:#fff;border:1px solid #e7e4dd;border-radius:15px;padding:15px;margin-bottom:13px;min-width:0}h2{font-size:16px;margin:0 0 12px}.hint{font-size:12px;color:#777;line-height:1.6;margin:8px 0 0}label{display:block;font-size:13px;color:#555;margin:8px 0}input,button{font:inherit}input{width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px;background:#fff}button{border:1px solid #ddd9d0;background:#fff;border-radius:9px;padding:9px 11px;cursor:pointer}button.primary{background:#344d3d;color:#fff;border-color:#344d3d}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.actions button{font-size:13px}.step{font-size:12px;font-weight:700;color:#657568;margin-bottom:5px}#canvasWrap{width:100%;overflow:hidden;border-radius:10px;background:#eeece6;border:1px solid #e3dfd6}canvas{display:block;width:100%;height:auto;touch-action:none}#status{font-size:12px;color:#666;margin:9px 0}.notice{padding:10px 12px;border-radius:9px;background:#f4f5f1;color:#5e655c;font-size:12px;line-height:1.55;margin:10px 0}.selected{font-size:13px;color:#555;min-height:20px}.view-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0}.view-tools button{min-width:42px}.view-tools .zoom-label{font-size:12px;color:#666;min-width:48px;text-align:center}.view-tools button:disabled{opacity:.4;cursor:not-allowed}#share{background:#edf3ee;border-color:#cbd8cd;color:#344d3d;font-weight:650}.zone-help{font-size:12px;line-height:1.55;color:#666;margin:8px 0 0}.zone-active{background:#fff4df;color:#805516}.collision-note{background:#fff0ed;color:#9b3328;border:1px solid #f0c5bd;padding:9px 11px;border-radius:9px;font-size:12px;line-height:1.5;margin:8px 0}.collision-note:empty{display:none}#total{font-size:21px;font-weight:750}.furniture-list{display:grid;gap:6px;margin-top:8px}.furniture-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px;border:1px solid #e7e4dd;border-radius:9px;background:#fff}.furniture-row.active{border:2px solid #2059a5;background:#f3f7fc}.swatch{width:18px;height:18px;border-radius:5px;border:1px solid #aaa;flex:none}.furniture-row small{display:block;color:#777;font-size:11px}.product-card{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:center;border:1px solid #e7e4dd;border-radius:10px;padding:8px}.product-card img{width:58px;height:58px;object-fit:cover;border-radius:7px;background:#f0eee8}.product-card .product-actions{grid-column:1/-1;display:flex;gap:6px}.product-card .product-actions button{flex:1;font-size:12px;padding:7px}.pill{display:inline-block;background:#edf1eb;border-radius:30px;padding:3px 8px;font-size:11px;color:#49614e;margin-left:5px}@media(max-width:800px){main{grid-template-columns:1fr;margin:10px auto;padding:0 10px;gap:10px}.side{order:2}#workspace{order:1;padding:10px}.panel{padding:12px}header{padding:15px 14px}.view-tools{gap:6px}.view-tools button{padding:10px 12px;min-height:42px}button,input,select{font-size:16px}#canvasWrap{touch-action:none}}
 </style></head><body>
-<header><h1>우리집 배치연구소 <small style="font-size:13px;color:#758075">v15</small></h1><p>실제 아파트 도면 위에 가구와 상품 이미지를 배치해 보세요.</p></header>
+<header><h1>우리집 배치연구소 <small style="font-size:13px;color:#758075">v17</small></h1><p>실제 아파트 도면 위에 가구와 상품 이미지를 배치해 보세요.</p></header>
 <main><aside class="side">
 <section class="panel"><div class="step">STEP 1</div><h2>아파트 도면</h2><label>도면 이미지 올리기<input id="planUpload" type="file" accept="image/*"></label><div class="actions"><button id="useSample">59A 도면 다시 보기</button><button id="removePlan">도면 지우기</button></div><p class="hint">도면 이미지는 원래 가로·세로 비율을 유지해 표시돼요. 다른 아파트 도면도 업로드할 수 있어요.</p></section>
 <section class="panel"><div class="step">STEP 2</div><h2>실제 크기 맞추기 <span class="pill" id="calStatus">미설정</span></h2><label>도면에서 알고 있는 길이 (cm)<input id="knownLength" type="number" min="1" value="320"></label><button class="primary" id="calibrate" style="width:100%">기준 길이 지정하기</button><p class="hint" id="calHint">버튼을 누른 뒤 도면에서 실제 길이를 아는 구간의 양 끝을 차례로 클릭하세요. 예: 도면에 3200이라고 적힌 벽 길이는 320cm예요.</p><div class="actions"><button id="resetCal">보정 초기화</button></div><div class="notice">정확도는 도면 이미지의 품질과 기준 길이를 찍는 위치에 따라 달라져요. 자동으로 벽을 인식하는 기능은 아직 아니에요.</div></section>
@@ -14,10 +14,12 @@
 <div class="row"><label>가로 (cm)<input id="productW" type="number" min="10" value="140"></label><label>세로·깊이 (cm)<input id="productH" type="number" min="10" value="80"></label></div>
 <label>가격 (원)<input id="productPrice" type="number" min="0" value="0"></label>
 <label>상품 종류<select id="productType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="table">식탁</option><option value="sofa">소파</option><option value="bed">침대</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타</option></select></label>
-<label>상품 사진 주소 (선택)<input id="productImage" type="url" placeholder="https://..."></label>
+<label>상품 이미지 파일 선택<input id="productImageFile" type="file" accept="image/png,image/jpeg,image/webp"></label>
+<p class="hint" id="imageUploadStatus">버튼을 눌러 컴퓨터나 휴대폰에 저장된 상품 사진을 선택하세요.</p>
+<label>상품 이미지 주소 (선택)<input id="productImage" type="url" placeholder="https:// 이미지 주소를 넣을 때만 사용"></label>
 <label>구매 페이지 주소 (선택)<input id="productUrl" type="url" placeholder="https://..."></label>
 <button class="primary" id="saveProduct" style="width:100%">상품 등록하기</button>
-<p class="hint">지금은 상품을 직접 등록하는 방식이에요. 구매 주소는 실제 상품 페이지나 나중에 발급받은 제휴 링크를 넣으면 돼요.</p>
+<p class="hint">상품 사진은 위의 파일 선택 버튼으로 올려주세요. 컴퓨터의 file:/// 경로를 주소 칸에 붙여넣는 방식은 사용할 수 없어요.</p>
 <div id="productCatalog" class="furniture-list"><p class="hint">등록한 상품이 여기에 표시돼요.</p></div></section>
 <section class="panel"><div class="step">STEP 6</div><h2>선택한 가구 수정</h2><div id="selectedInfo" class="selected">도면에서 가구를 선택해 주세요.</div><div class="row"><label>가로 (cm)<input id="editW" type="number" min="10" value="200"></label><label>세로·깊이 (cm)<input id="editH" type="number" min="10" value="90"></label></div><label>가구 이름<input id="editName" maxlength="24"></label><label>가격 (원)<input id="editPrice" type="number" min="0" value="0"></label><label>가구 종류<select id="editType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="sofa">소파</option><option value="bed">침대</option><option value="table">식탁</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타 가구</option></select></label><label>가구 모양<select id="editShape" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="rect">사각형</option><option value="circle">원형</option><option value="round">둥근 사각형</option></select></label><label>가구 색상<input id="editColor" type="color" value="#d7c4ad" style="height:42px;padding:4px"></label><div class="actions"><button id="apply">수정 적용</button><button id="rotate">90° 회전</button><button id="duplicate">복제</button><button id="delete">삭제</button></div></section>
 <section class="panel"><div class="step">STEP 7</div><h2>배치한 가구 목록</h2><div id="furnitureList" class="furniture-list"><p class="hint">아직 추가한 가구가 없어요.</p></div><p class="hint">목록에서 가구를 누르면 도면에서 선택돼요.</p></section>
@@ -84,6 +86,8 @@ function findFreeCenter(it,preferred){const z=getZone(it.zoneId);if(!z)return pr
 function refreshRooms(){const sel=$('activeRoom');sel.innerHTML='';if(!zones.length){const o=document.createElement('option');o.value='';o.textContent='등록된 방 없음';sel.appendChild(o);activeZoneId='';}else{zones.forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=z.name;sel.appendChild(o)});if(!zones.some(z=>z.id===activeZoneId))activeZoneId=zones[0].id;sel.value=activeZoneId}}
 $('activeRoom').onchange=e=>{activeZoneId=e.target.value;draw()};
 
+const productImageCache=new Map();
+function getProductImage(src){if(!src)return null;if(!productImageCache.has(src)){const im=new Image();im.onload=()=>draw();im.src=src;productImageCache.set(src,im)}return productImageCache.get(src)}
 function drawFurnitureDetails(it,w,h){
  const type=it.type||'custom',pad=Math.max(5,Math.min(w,h)*.08);
  ctx.save();ctx.strokeStyle='rgba(55,49,41,.72)';ctx.fillStyle='rgba(255,255,255,.38)';
@@ -125,7 +129,10 @@ function drawFurnitureDetails(it,w,h){
 function draw(){ctx.clearRect(0,0,1000,700);ctx.fillStyle='#eeece6';ctx.fillRect(0,0,1000,700);ctx.save();ctx.translate(camera.x,camera.y);ctx.scale(camera.zoom,camera.zoom);view=imageRect();if(img){ctx.fillStyle='#fff';ctx.fillRect(view.x,view.y,view.w,view.h);ctx.drawImage(img,view.x,view.y,view.w,view.h);ctx.strokeStyle='#c9c5bc';ctx.lineWidth=1.5;ctx.strokeRect(view.x,view.y,view.w,view.h)}else{ctx.fillStyle='#6c6a63';ctx.font='20px sans-serif';ctx.textAlign='center';ctx.fillText('도면 이미지를 업로드해 주세요',500,340)}
 zones.forEach((z,zi)=>{ctx.save();ctx.beginPath();z.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=zi%2?'rgba(72,116,166,.13)':'rgba(54,126,84,.13)';ctx.fill();ctx.strokeStyle=z.id===activeZoneId?'#278052':'#55728d';ctx.lineWidth=z.id===activeZoneId?4:2.5;ctx.setLineDash([9,5]);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#344d3d';ctx.font='bold 14px sans-serif';ctx.textAlign='center';const cx=z.points.reduce((a,p)=>a+p.x,0)/z.points.length,cy=z.points.reduce((a,p)=>a+p.y,0)/z.points.length;ctx.fillText(z.name,cx,cy);ctx.restore()})
 if(zoneMode&&zonePoints.length){ctx.save();ctx.beginPath();zonePoints.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#d18b22';ctx.lineWidth=3;ctx.setLineDash([7,5]);ctx.stroke();ctx.setLineDash([]);zonePoints.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);ctx.fillStyle='#d18b22';ctx.fill()});ctx.restore()}
-const sc=getScale(),collisions=getCollisionSet();items.forEach((it,i)=>{const w=(it.rot?it.h:it.w)*sc,h=(it.rot?it.w:it.h)*sc;ctx.save();ctx.translate(it.x,it.y);ctx.fillStyle=collisions.set.has(i)?'rgba(211,66,52,.30)':it.color;ctx.strokeStyle=collisions.set.has(i)?'#c9362b':(selectedSet.has(i)||i===selected?'#2059a5':'#625c52');ctx.lineWidth=collisions.set.has(i)?4:(selectedSet.has(i)||i===selected?4:2.5);ctx.beginPath();if(it.shape==='circle'){ctx.ellipse(0,0,w/2,h/2,0,0,Math.PI*2)}else if(it.shape==='round'){ctx.roundRect(-w/2,-h/2,w,h,Math.min(24,w/4,h/4))}else{ctx.rect(-w/2,-h/2,w,h)}ctx.fill();ctx.stroke();drawFurnitureDetails(it,w,h);ctx.fillStyle='#292820';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 16px sans-serif';ctx.fillText(it.name.length>15?it.name.slice(0,14)+'…':it.name,0,-7);ctx.font='12px sans-serif';ctx.fillText(it.w+'×'+it.h+'cm',0,13);
+const sc=getScale(),collisions=getCollisionSet();items.forEach((it,i)=>{const w=(it.rot?it.h:it.w)*sc,h=(it.rot?it.w:it.h)*sc;ctx.save();ctx.translate(it.x,it.y);ctx.fillStyle=collisions.set.has(i)?'rgba(211,66,52,.30)':it.color;ctx.strokeStyle=collisions.set.has(i)?'#c9362b':(selectedSet.has(i)||i===selected?'#2059a5':'#625c52');ctx.lineWidth=collisions.set.has(i)?4:(selectedSet.has(i)||i===selected?4:2.5);ctx.beginPath();if(it.shape==='circle'){ctx.ellipse(0,0,w/2,h/2,0,0,Math.PI*2)}else if(it.shape==='round'){ctx.roundRect(-w/2,-h/2,w,h,Math.min(24,w/4,h/4))}else{ctx.rect(-w/2,-h/2,w,h)}ctx.fill();ctx.stroke();
+if(it.imageData){const im=getProductImage(it.imageData);if(im&&im.complete&&im.naturalWidth){ctx.save();ctx.drawImage(im,-w/2+2,-h/2+2,w-4,h-4);ctx.restore();}}
+else{drawFurnitureDetails(it,w,h);}
+ctx.fillStyle='#292820';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 16px sans-serif';ctx.fillText(it.name.length>15?it.name.slice(0,14)+'…':it.name,0,-7);ctx.font='12px sans-serif';ctx.fillText(it.w+'×'+it.h+'cm',0,13);
 if(i===selected){ctx.fillStyle='#ffffff';ctx.strokeStyle='#2059a5';ctx.lineWidth=2;[[-w/2,-h/2],[w/2,-h/2],[-w/2,h/2],[w/2,h/2]].forEach(([hx,hy])=>{ctx.beginPath();ctx.rect(hx-6,hy-6,12,12);ctx.fill();ctx.stroke()})}
 ctx.restore()});
 if(calMode&&calPoints.length){ctx.fillStyle='#2363a8';calPoints.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fill()});if(calPoints.length===2){ctx.strokeStyle='#2363a8';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(calPoints[0].x,calPoints[0].y);ctx.lineTo(calPoints[1].x,calPoints[1].y);ctx.stroke()}}
@@ -161,18 +168,39 @@ function renderProducts(){
 function placeProduct(index){
  const pr=products[index];if(!pr)return;
  if(zones.length&&!getZone(activeZoneId)){alert('먼저 가구를 배치할 방을 선택해 주세요.');return}
- const it={name:pr.name,w:pr.w,h:pr.h,price:pr.price,x:view.x+view.w/2,y:view.y+view.h/2,rot:false,zoneId:activeZoneId,color:'#d7c4ad',shape:'rect',type:pr.type||'custom',productId:pr.id,purchaseUrl:pr.url||''};
+ const it={name:pr.name,w:pr.w,h:pr.h,price:pr.price,x:view.x+view.w/2,y:view.y+view.h/2,rot:false,zoneId:activeZoneId,color:'#d7c4ad',shape:'rect',type:pr.type||'custom',productId:pr.id,purchaseUrl:pr.url||'',imageData:pr.imageData||''};
  const az=getZone(activeZoneId),spot=findFreeCenter(it,{x:az?az.points.reduce((a,p)=>a+p.x,0)/az.points.length:view.x+view.w/2,y:az?az.points.reduce((a,p)=>a+p.y,0)/az.points.length:view.y+view.h/2});
  if(!spot){alert('이 상품을 배치할 공간이 없어요. 방 영역을 넓히거나 상품 크기를 확인해 주세요.');return}
  pushHistory();it.x=spot.x;it.y=spot.y;items.push(it);selected=items.length-1;selectedSet=new Set([selected]);draw();$('status').textContent='상품을 도면에 배치했어요.'
 }
+let selectedProductImageData='';
+$('productImageFile').addEventListener('change',()=>{
+ const file=$('productImageFile').files && $('productImageFile').files[0];
+ if(!file){selectedProductImageData='';return}
+ if(!['image/png','image/jpeg','image/webp'].includes(file.type)){alert('PNG, JPG, WEBP 이미지 파일만 선택해 주세요.');$('productImageFile').value='';return}
+ if(file.size>10*1024*1024){alert('원본 사진은 10MB 이하로 선택해 주세요.');$('productImageFile').value='';return}
+ const reader=new FileReader();
+ reader.onload=()=>{
+  const im=new Image();
+  im.onload=()=>{
+   const scale=Math.min(1,1200/Math.max(im.width,im.height));
+   const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));
+   c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+   selectedProductImageData=c.toDataURL('image/jpeg',0.82);
+   $('imageUploadStatus').textContent='✓ 사진 선택 완료! 상품 등록 후 도면에 표시돼요.';
+  };
+  im.onerror=()=>{$('imageUploadStatus').textContent='이미지를 읽지 못했어요. 다른 사진을 선택해 주세요.'};
+  im.src=reader.result;
+ };
+ reader.readAsDataURL(file);
+});
 $('saveProduct').onclick=()=>{
  const name=$('productName').value.trim(),w=+$('productW').value,h=+$('productH').value,price=+$('productPrice').value,image=$('productImage').value.trim(),url=$('productUrl').value.trim();
  if(!name){alert('상품명을 입력해 주세요.');return}
  if(w<10||h<10||w>1500||h>1500||price<0){alert('상품 크기와 가격을 확인해 주세요.');return}
- for(const u of [image,url])if(u&&!/^https?:\/\//i.test(u)){alert('사진과 구매 주소는 http 또는 https 주소를 입력해 주세요.');return}
- products.push({id:'product-'+Date.now(),name,w,h,price,image,url,type:$('productType').value});
- saveProducts();$('productName').value='';$('productImage').value='';$('productUrl').value='';
+ if(url&&!/^https?:\/\//i.test(url)){alert('구매 주소는 http 또는 https 주소를 입력해 주세요.');return}
+ products.push({id:'product-'+Date.now(),name,w,h,price,image,imageData:selectedProductImageData,url,type:$('productType').value});
+ saveProducts();selectedProductImageData='';$('productImageFile').value='';$('imageUploadStatus').textContent='버튼을 눌러 컴퓨터나 휴대폰에 저장된 상품 사진을 선택하세요.';$('productName').value='';$('productImage').value='';$('productUrl').value='';
 };
 function update(){$('selectedInfo').textContent=selected<0?'도면에서 가구를 선택해 주세요.':(selectedSet.size>1?selectedSet.size+'개 가구 선택됨':items[selected].name+' 선택됨');if(selected>=0){const it=items[selected];$('editW').value=it.w;$('editH').value=it.h;$('editName').value=it.name;$('editPrice').value=it.price;$('editColor').value=it.color||'#d7c4ad';$('editShape').value=it.shape||'rect';$('editType').value=it.type||'custom'}const collisionInfo=getCollisionSet();
 $('summary').textContent='배치된 가구 '+items.length+'개'+(collisionInfo.pairs.length?' · 겹침 '+collisionInfo.pairs.length+'곳':' · 가구 겹침 없음');
