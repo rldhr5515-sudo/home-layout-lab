@@ -65,11 +65,40 @@ function onSeg(a,b,p){return Math.min(a.x,b.x)-1e-6<=p.x&&p.x<=Math.max(a.x,b.x)
 function segmentsCross(a,b,c,d){const o1=orient(a,b,c),o2=orient(a,b,d),o3=orient(c,d,a),o4=orient(c,d,b);if(((o1>0&&o2<0)||(o1<0&&o2>0))&&((o3>0&&o4<0)||(o3<0&&o4>0)))return true;return (Math.abs(o1)<1e-6&&onSeg(a,b,c))||(Math.abs(o2)<1e-6&&onSeg(a,b,d))||(Math.abs(o3)<1e-6&&onSeg(c,d,a))||(Math.abs(o4)<1e-6&&onSeg(c,d,b))}
 function getZone(id){return zones.find(z=>z.id===id)}
 function insideZone(it,x=it.x,y=it.y){const z=getZone(it.zoneId);if(!z)return true;const poly=z.points,c=itemCorners(it,x,y);if(!c.every(p=>pointInPoly(p,poly)))return false;for(let i=0;i<4;i++){const a=c[i],b=c[(i+1)%4];for(let j=0;j<poly.length;j++){const u=poly[j],v=poly[(j+1)%poly.length];if(segmentsCross(a,b,u,v))return false}}return true}
-function boxesOverlap(a,b){
- const sa=getScale(), aw=(a.rot?a.h:a.w)*sa, ah=(a.rot?a.w:a.h)*sa, bw=(b.rot?b.h:b.w)*sa, bh=(b.rot?b.w:b.h)*sa;
- const overlapX=Math.min(a.x+aw/2,b.x+bw/2)-Math.max(a.x-aw/2,b.x-bw/2);
- const overlapY=Math.min(a.y+ah/2,b.y+bh/2)-Math.max(a.y-ah/2,b.y-bh/2);
- return overlapX>1 && overlapY>1;
+function polygonsOverlap(polyA,polyB){
+ // Separating Axis Theorem: 회전된 가구도 정확히 겹침을 검사합니다.
+ for(const poly of [polyA,polyB]) for(let i=0;i<poly.length;i++){
+  const p1=poly[i],p2=poly[(i+1)%poly.length],axis={x:-(p2.y-p1.y),y:p2.x-p1.x};
+  let amin=Infinity,amax=-Infinity,bmin=Infinity,bmax=-Infinity;
+  for(const p of polyA){const v=p.x*axis.x+p.y*axis.y;amin=Math.min(amin,v);amax=Math.max(amax,v)}
+  for(const p of polyB){const v=p.x*axis.x+p.y*axis.y;bmin=Math.min(bmin,v);bmax=Math.max(bmax,v)}
+  if(amax<=bmin+1e-6||bmax<=amin+1e-6)return false;
+ }
+ return true;
+}
+function boxesOverlap(a,b){return polygonsOverlap(itemCorners(a),itemCorners(b))}
+function canPlace(candidate,x=candidate.x,y=candidate.y,exclude=new Set()){
+ const placed={...candidate,x,y};
+ const z=getZone(placed.zoneId);
+ if(z){if(!insideZone(placed,x,y))return false}
+ else {
+  const c=itemCorners(placed,x,y),r=imageRect();
+  if(!c.every(p=>p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h))return false;
+ }
+ for(let i=0;i<items.length;i++){
+  if(exclude.has(i))continue;
+  if(polygonsOverlap(itemCorners(placed),itemCorners(items[i])))return false;
+ }
+ return true;
+}
+function groupCanPlace(candidates,indices){
+ const moving=new Set(indices);
+ for(let i=0;i<candidates.length;i++){
+  const c=candidates[i];
+  if(!canPlace(c,c.x,c.y,moving))return false;
+  for(let j=i+1;j<candidates.length;j++)if(polygonsOverlap(itemCorners(c),itemCorners(candidates[j])))return false;
+ }
+ return true;
 }
 function getCollisionSet(){
  const set=new Set(), pairs=[];
