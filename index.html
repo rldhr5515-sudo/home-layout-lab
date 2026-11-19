@@ -1,32 +1,15 @@
 <!doctype html>
-<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v19</title>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>우리집 배치연구소 v20</title>
 <style>
-:root{font-family:system-ui,"Noto Sans KR",sans-serif;color:#292c27;background:#f6f5f1}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e5de;padding:20px max(18px,calc((100% - 1200px)/2))}h1{font-size:clamp(23px,4vw,32px);margin:0 0 5px}header p{margin:0;color:#777;font-size:14px}main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px}.panel,#workspace{background:#fff;border:1px solid #e7e4dd;border-radius:15px;padding:15px;margin-bottom:13px;min-width:0}h2{font-size:16px;margin:0 0 12px}.hint{font-size:12px;color:#777;line-height:1.6;margin:8px 0 0}label{display:block;font-size:13px;color:#555;margin:8px 0}input,button{font:inherit}input{width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px;background:#fff}button{border:1px solid #ddd9d0;background:#fff;border-radius:9px;padding:9px 11px;cursor:pointer}button.primary{background:#344d3d;color:#fff;border-color:#344d3d}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.actions button{font-size:13px}.step{font-size:12px;font-weight:700;color:#657568;margin-bottom:5px}#canvasWrap{width:100%;overflow:hidden;border-radius:10px;background:#eeece6;border:1px solid #e3dfd6}canvas{display:block;width:100%;height:auto;touch-action:none}#status{font-size:12px;color:#666;margin:9px 0}.notice{padding:10px 12px;border-radius:9px;background:#f4f5f1;color:#5e655c;font-size:12px;line-height:1.55;margin:10px 0}.selected{font-size:13px;color:#555;min-height:20px}.view-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0}.view-tools button{min-width:42px}.view-tools .zoom-label{font-size:12px;color:#666;min-width:48px;text-align:center}.view-tools button:disabled{opacity:.4;cursor:not-allowed}#share{background:#edf3ee;border-color:#cbd8cd;color:#344d3d;font-weight:650}.zone-help{font-size:12px;line-height:1.55;color:#666;margin:8px 0 0}.zone-active{background:#fff4df;color:#805516}.collision-note{background:#fff0ed;color:#9b3328;border:1px solid #f0c5bd;padding:9px 11px;border-radius:9px;font-size:12px;line-height:1.5;margin:8px 0}.collision-note:empty{display:none}#total{font-size:21px;font-weight:750}.furniture-list{display:grid;gap:6px;margin-top:8px}.furniture-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px;border:1px solid #e7e4dd;border-radius:9px;background:#fff}.furniture-row.active{border:2px solid #2059a5;background:#f3f7fc}.swatch{width:18px;height:18px;border-radius:5px;border:1px solid #aaa;flex:none}.furniture-row small{display:block;color:#777;font-size:11px}.product-card{display:grid;grid-template-columns:58px 1fr;gap:9px;align-items:center;border:1px solid #e7e4dd;border-radius:10px;padding:8px}.product-card img{width:58px;height:58px;object-fit:cover;border-radius:7px;background:#f0eee8}.product-card .product-actions{grid-column:1/-1;display:flex;gap:6px}.product-card .product-actions button{flex:1;font-size:12px;padding:7px}.pill{display:inline-block;background:#edf1eb;border-radius:30px;padding:3px 8px;font-size:11px;color:#49614e;margin-left:5px}@media(max-width:800px){main{grid-template-columns:1fr;margin:10px auto;padding:0 10px;gap:10px}.side{order:2}#workspace{order:1;padding:10px}.panel{padding:12px}header{padding:15px 14px}.view-tools{gap:6px}.view-tools button{padding:10px 12px;min-height:42px}button,input,select{font-size:16px}#canvasWrap{touch-action:none}}
+:root{font-family:system-ui,"Noto Sans KR",sans-serif;color:#292c27;background:#f6f5f1}*{box-sizing:border-box}body{margin:0}header{background:#fff;border-bottom:1px solid #e8e5de;padding:20px max(18px,calc((100% - 1200px)/2))}h1{font-size:clamp(23px,4vw,32px);margin:0 0 5px}header p{margin:0;color:#777;font-size:14px}main{max-width:1200px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px}.panel,#workspace{background:#fff;border:1px solid #e7e4dd;border-radius:15px;padding:15px;margin-bottom:13px;min-width:0}h2{font-size:16px;margin:0 0 12px}.hint{font-size:12px;color:#777;line-height:1.6;margin:8px 0 0}label{display:block;font-size:13px;color:#555;margin:8px 0}input,button{font:inherit}input{width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px;background:#fff}button{border:1px solid #ddd9d0;background:#fff;border-radius:9px;padding:9px 11px;cursor:pointer}button.primary{background:#344d3d;color:#fff;border-color:#344d3d}.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.actions button{font-size:13px}.step{font-size:12px;font-weight:700;color:#657568;margin-bottom:5px}#canvasWrap{width:100%;overflow:hidden;border-radius:10px;background:#eeece6;border:1px solid #e3dfd6}canvas{display:block;width:100%;height:auto;touch-action:none}#status{font-size:12px;color:#666;margin:9px 0}.notice{padding:10px 12px;border-radius:9px;background:#f4f5f1;color:#5e655c;font-size:12px;line-height:1.55;margin:10px 0}.selected{font-size:13px;color:#555;min-height:20px}.view-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:10px 0}.view-tools button{min-width:42px}.view-tools .zoom-label{font-size:12px;color:#666;min-width:48px;text-align:center}.view-tools button:disabled{opacity:.4;cursor:not-allowed}#share{background:#edf3ee;border-color:#cbd8cd;color:#344d3d;font-weight:650}.zone-help{font-size:12px;line-height:1.55;color:#666;margin:8px 0 0}.zone-active{background:#fff4df;color:#805516}.collision-note{background:#fff0ed;color:#9b3328;border:1px solid #f0c5bd;padding:9px 11px;border-radius:9px;font-size:12px;line-height:1.5;margin:8px 0}.collision-note:empty{display:none}#total{font-size:21px;font-weight:750}.furniture-list{display:grid;gap:6px;margin-top:8px}.furniture-row{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:8px;border:1px solid #e7e4dd;border-radius:9px;background:#fff}.furniture-row.active{border:2px solid #2059a5;background:#f3f7fc}.swatch{width:18px;height:18px;border-radius:5px;border:1px solid #aaa;flex:none}.furniture-row small{display:block;color:#777;font-size:11px}.pill{display:inline-block;background:#edf1eb;border-radius:30px;padding:3px 8px;font-size:11px;color:#49614e;margin-left:5px}@media(max-width:800px){main{grid-template-columns:1fr;margin:10px auto;padding:0 10px;gap:10px}.side{order:2}#workspace{order:1;padding:10px}.panel{padding:12px}header{padding:15px 14px}.view-tools{gap:6px}.view-tools button{padding:10px 12px;min-height:42px}button,input,select{font-size:16px}#canvasWrap{touch-action:none}}
 </style></head><body>
-<header><h1>우리집 배치연구소 <small style="font-size:13px;color:#758075">v17</small></h1><p>실제 아파트 도면 위에 가구와 상품 이미지를 배치해 보세요.</p></header>
+<header><h1>우리집 배치연구소 <small style="font-size:13px;color:#758075">v20</small></h1><p>도면 위에 귀여운 2D 가구 일러스트를 배치해 보세요.</p></header>
 <main><aside class="side">
 <section class="panel"><div class="step">STEP 1</div><h2>아파트 도면</h2><label>도면 이미지 올리기<input id="planUpload" type="file" accept="image/*"></label><div class="actions"><button id="useSample">59A 도면 다시 보기</button><button id="removePlan">도면 지우기</button></div><p class="hint">도면 이미지는 원래 가로·세로 비율을 유지해 표시돼요. 다른 아파트 도면도 업로드할 수 있어요.</p></section>
 <section class="panel"><div class="step">STEP 2</div><h2>실제 크기 맞추기 <span class="pill" id="calStatus">미설정</span></h2><label>도면에서 알고 있는 길이 (cm)<input id="knownLength" type="number" min="1" value="320"></label><button class="primary" id="calibrate" style="width:100%">기준 길이 지정하기</button><p class="hint" id="calHint">버튼을 누른 뒤 도면에서 실제 길이를 아는 구간의 양 끝을 차례로 클릭하세요. 예: 도면에 3200이라고 적힌 벽 길이는 320cm예요.</p><div class="actions"><button id="resetCal">보정 초기화</button></div><div class="notice">정확도는 도면 이미지의 품질과 기준 길이를 찍는 위치에 따라 달라져요. 자동으로 벽을 인식하는 기능은 아직 아니에요.</div></section>
 <section class="panel"><div class="step">STEP 3</div><h2>방별 배치 영역</h2><div class="notice">방 이름을 입력하고 해당 방의 벽 안쪽을 따라 꼭짓점을 찍어 영역을 만들어요. 거실·안방·작은방을 각각 등록할 수 있어요.</div><label>새 방 이름<input id="roomName" maxlength="20" value="거실" placeholder="예: 거실, 안방, 작은방"></label><div class="actions"><button class="primary" id="drawZone">이 방 영역 그리기</button><button id="finishZone">영역 확정</button></div><label>작업할 방 선택<select id="activeRoom" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px;background:white"><option value="">등록된 방 없음</option></select></label><div class="actions"><button id="clearZone">선택한 방 영역 지우기</button></div><p class="zone-help" id="zoneStatus">아직 방 영역을 지정하지 않았어요. 방을 등록한 뒤 가구를 추가해 주세요.</p><p class="hint">방마다 영역을 따로 그릴 수 있어요. 벽 자동 인식은 아니므로 방의 안쪽 경계를 따라 직접 4개 이상 점을 찍어 주세요.</p></section>
 <section class="panel"><div class="step">STEP 4</div><h2>가구 추가</h2><label>가구 이름<input id="newName" maxlength="24" value="소파"></label><div class="row"><label>가로 (cm)<input id="newW" type="number" min="10" max="1500" value="200"></label><label>세로·깊이 (cm)<input id="newH" type="number" min="10" max="1500" value="90"></label></div><label>가격 (원, 선택)<input id="newPrice" type="number" min="0" value="0"></label><label>가구 종류<select id="newType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="sofa">소파</option><option value="bed">침대</option><option value="table">식탁</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타 가구</option></select></label><label>가구 모양<select id="newShape" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="rect">사각형</option><option value="circle">원형</option><option value="round">둥근 사각형</option></select></label><label>가구 색상<input id="newColor" type="color" value="#d7c4ad" style="height:42px;padding:4px"></label><button class="primary" id="add" style="width:100%">가구 추가하기</button><p class="hint">크기 보정 후 추가하면 입력한 cm 크기를 기준으로 표시돼요. 보정 전에는 화면에서 임시 크기로 보여요.</p></section>
-<section class="panel"><div class="step">STEP 5</div><h2>내 가구 상품 등록</h2>
-<label>상품명<input id="productName" maxlength="50" placeholder="예: 원목 4인용 식탁"></label>
-<div class="row"><label>가로 (cm)<input id="productW" type="number" min="10" value="140"></label><label>세로·깊이 (cm)<input id="productH" type="number" min="10" value="80"></label></div>
-<label>가격 (원)<input id="productPrice" type="number" min="0" value="0"></label>
-<label>상품 종류<select id="productType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="table">식탁</option><option value="sofa">소파</option><option value="bed">침대</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타</option></select></label>
-<label>상품 사진 선택<input id="productImageFile" type="file" accept="image/png,image/jpeg,image/webp"></label>
-<p class="hint" id="imageUploadStatus">사진을 선택한 뒤 배경 제거를 눌러보세요. 흰색·단색 배경 사진에서 가장 잘 작동해요.</p>
-<div class="actions" style="margin:8px 0">
- <button type="button" id="removeBgBtn" disabled>✂ 배경 제거하기</button>
- <button type="button" id="restoreOriginalBtn" disabled>원본 사진으로</button>
-</div>
-<div id="productImagePreview" style="display:none;margin:8px 0;padding:12px;border:1px dashed #c9c5bb;border-radius:10px;background-color:#f1f0ec;background-image:linear-gradient(45deg,#e5e3de 25%,transparent 25%),linear-gradient(-45deg,#e5e3de 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e5e3de 75%),linear-gradient(-45deg,transparent 75%,#e5e3de 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0">
- <img id="productImagePreviewImg" alt="상품 사진 미리보기" style="display:block;max-width:100%;max-height:180px;margin:auto;object-fit:contain">
-</div>
-<button class="primary" id="saveProduct" style="width:100%">상품 등록하기</button>
-<p class="hint">사진 파일만 선택하면 돼요. 이미지 주소나 구매 페이지 주소를 입력할 필요가 없어요.</p>
-<div id="productCatalog" class="furniture-list"><p class="hint">등록한 상품이 여기에 표시돼요.</p></div></section>
-<section class="panel"><div class="step">STEP 6</div><h2>선택한 가구 수정</h2><div id="selectedInfo" class="selected">도면에서 가구를 선택해 주세요.</div><div class="row"><label>가로 (cm)<input id="editW" type="number" min="10" value="200"></label><label>세로·깊이 (cm)<input id="editH" type="number" min="10" value="90"></label></div><label>가구 이름<input id="editName" maxlength="24"></label><label>가격 (원)<input id="editPrice" type="number" min="0" value="0"></label><label>가구 종류<select id="editType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="sofa">소파</option><option value="bed">침대</option><option value="table">식탁</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타 가구</option></select></label><label>가구 모양<select id="editShape" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="rect">사각형</option><option value="circle">원형</option><option value="round">둥근 사각형</option></select></label><label>가구 색상<input id="editColor" type="color" value="#d7c4ad" style="height:42px;padding:4px"></label><div class="actions"><button id="apply">수정 적용</button><button id="rotate">90° 회전</button><button id="duplicate">복제</button><button id="delete">삭제</button></div></section>
+<section class="panel"><div class="step">STEP 5</div><h2>선택한 가구 수정</h2><div id="selectedInfo" class="selected">도면에서 가구를 선택해 주세요.</div><div class="row"><label>가로 (cm)<input id="editW" type="number" min="10" value="200"></label><label>세로·깊이 (cm)<input id="editH" type="number" min="10" value="90"></label></div><label>가구 이름<input id="editName" maxlength="24"></label><label>가격 (원)<input id="editPrice" type="number" min="0" value="0"></label><label>가구 종류<select id="editType" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="sofa">소파</option><option value="bed">침대</option><option value="table">식탁</option><option value="chair">의자</option><option value="wardrobe">옷장</option><option value="desk">책상</option><option value="fridge">냉장고</option><option value="tv">TV장</option><option value="custom">기타 가구</option></select></label><label>가구 모양<select id="editShape" style="width:100%;padding:9px;border:1px solid #ddd9d0;border-radius:9px"><option value="rect">사각형</option><option value="circle">원형</option><option value="round">둥근 사각형</option></select></label><label>가구 색상<input id="editColor" type="color" value="#d7c4ad" style="height:42px;padding:4px"></label><div class="actions"><button id="apply">수정 적용</button><button id="rotate">90° 회전</button><button id="duplicate">복제</button><button id="delete">삭제</button></div></section>
 <section class="panel"><div class="step">STEP 7</div><h2>배치한 가구 목록</h2><div id="furnitureList" class="furniture-list"><p class="hint">아직 추가한 가구가 없어요.</p></div><p class="hint">목록에서 가구를 누르면 도면에서 선택돼요.</p></section>
 </aside>
 <section id="workspace"><h2>⑤ 우리 집 가구 배치도</h2><div class="notice">도면 위 가구를 끌어 이동하세요. 배치 영역을 지정하면 가구 전체가 그 경계 안에 있을 때만 이동·추가·회전됩니다. 가구끼리 겹치면 빨간색 테두리와 안내가 표시돼요. Shift 키를 누르고 가구를 클릭하면 여러 개를 선택할 수 있어요. 선택한 가구를 끌면 함께 이동해요.</div><div class="view-tools"><button id="zoomOut" type="button" aria-label="축소">−</button><span class="zoom-label" id="zoomLabel">100%</span><button id="zoomIn" type="button" aria-label="확대">＋</button><button id="zoomReset" type="button">화면 맞춤</button><button id="panMode" type="button" aria-pressed="false">손바닥 이동 OFF</button></div><div class="hint">도면 이동은 ‘손바닥 이동 ON’일 때만 가능해요. 모바일 두 손가락 확대·이동도 손바닥 이동을 켠 뒤 사용하세요. 확대·축소는 + / − 버튼으로도 조절할 수 있어요.</div><div id="canvasWrap"><canvas id="floor" width="1000" height="700" aria-label="아파트 도면 가구 배치도"></canvas></div><div id="status">도면을 불러오는 중이에요.</div><div id="collisionStatus" class="collision-note" aria-live="polite"></div><div class="actions"><button id="undo" disabled>↶ 실행 취소</button><button id="redo" disabled>↷ 다시 실행</button><button id="clear">가구 모두 비우기</button><button class="primary" id="save">배치도 이미지 저장</button><button id="share">배치도 공유</button><button id="saveData">배치 저장</button><button id="resetData">저장된 배치 불러오기</button></div><p class="hint" id="saveStatus">배치 내용은 이 브라우저에 자동 저장돼요.</p><section class="panel" style="margin-top:13px;margin-bottom:0"><h2>예상 구매 금액</h2><div id="summary" class="hint">배치된 가구 0개</div><div id="total">0원</div></section></section></main>
@@ -36,8 +19,6 @@ const $=id=>document.getElementById(id),canvas=$('floor'),ctx=canvas.getContext(
 let img=null,customImageData='',items=[],selected=-1,selectedSet=new Set(),history=[],historyIndex=-1,camera={x:0,y:0,zoom:1},panMode=false,panDrag=null,pointerPoints=new Map(),pinchStart=null,calibrated=false,pxPerCm=1.5,view={x:40,y:35,w:920,h:630},drag=null,calMode=false,calPoints=[],zoneMode=false,zonePoints=[],zones=[],activeZoneId="",drawingZoneName="";
 const STORAGE_KEY='home-layout-lab-v12';
 const OLD_STORAGE_KEY='home-layout-lab-v11';
-const CATALOG_KEY='home-layout-lab-products-v1';
-let products=[];
 function snapshot(){return JSON.stringify({items,zones,activeZoneId,calibrated,pxPerCm,customImageData})}
 function pushHistory(){const snap=snapshot();if(history[historyIndex]===snap)return;history=history.slice(0,historyIndex+1);history.push(snap);if(history.length>60)history.shift();historyIndex=history.length-1;refreshHistoryButtons()}
 function restoreHistory(index){if(index<0||index>=history.length)return;historyIndex=index;const s=JSON.parse(history[index]);items=s.items||[];zones=s.zones||[];activeZoneId=s.activeZoneId||'';calibrated=!!s.calibrated;pxPerCm=s.pxPerCm||1.5;customImageData=s.customImageData||'';selected=-1;selectedSet.clear();refreshRooms();if(customImageData)loadImage(customImageData);else if(!img)loadImage('floorplan.jpg');draw();refreshHistoryButtons()}
@@ -91,36 +72,6 @@ function findFreeCenter(it,preferred){const z=getZone(it.zoneId);if(!z)return pr
 function refreshRooms(){const sel=$('activeRoom');sel.innerHTML='';if(!zones.length){const o=document.createElement('option');o.value='';o.textContent='등록된 방 없음';sel.appendChild(o);activeZoneId='';}else{zones.forEach(z=>{const o=document.createElement('option');o.value=z.id;o.textContent=z.name;sel.appendChild(o)});if(!zones.some(z=>z.id===activeZoneId))activeZoneId=zones[0].id;sel.value=activeZoneId}}
 $('activeRoom').onchange=e=>{activeZoneId=e.target.value;draw()};
 
-const productImageCache=new Map();
-function getProductImage(src){
- if(!src)return null;
- if(!productImageCache.has(src)){
-  const im=new Image();
-  im.onload=()=>{
-   try{
-    const c=document.createElement('canvas'),cx=c.getContext('2d',{willReadFrequently:true});
-    c.width=im.naturalWidth;c.height=im.naturalHeight;cx.drawImage(im,0,0);
-    const d=cx.getImageData(0,0,c.width,c.height).data;
-    let minX=c.width,minY=c.height,maxX=-1,maxY=-1;
-    // 상품 사진의 흰 여백을 자동으로 잘라 가구가 더 크게 보이도록 함
-    for(let y=0;y<c.height;y+=2)for(let x=0;x<c.width;x+=2){
-     const k=(y*c.width+x)*4,a=d[k+3],r=d[k],g=d[k+1],b=d[k+2];
-     if(a>18 && (r<246||g<246||b<246)){if(x<minX)minX=x;if(y<minY)minY=y;if(x>maxX)maxX=x;if(y>maxY)maxY=y}
-    }
-    if(maxX>minX&&maxY>minY){
-     const bw=maxX-minX+1,bh=maxY-minY+1;
-     if(bw*bh>c.width*c.height*.08){
-      const px=Math.round(bw*.025),py=Math.round(bh*.025);
-      im._trimBounds={x:Math.max(0,minX-px),y:Math.max(0,minY-py),w:Math.min(c.width, maxX+px+1)-Math.max(0,minX-px),h:Math.min(c.height,maxY+py+1)-Math.max(0,minY-py)};
-     }
-    }
-   }catch(e){}
-   draw();
-  };
-  im.src=src;productImageCache.set(src,im);
- }
- return productImageCache.get(src);
-}
 function drawFurnitureDetails(it,w,h){
  const type=it.type||'custom',pad=Math.max(5,Math.min(w,h)*.08);
  ctx.save();ctx.strokeStyle='rgba(55,49,41,.72)';ctx.fillStyle='rgba(255,255,255,.38)';
@@ -163,31 +114,8 @@ function draw(){ctx.clearRect(0,0,1000,700);ctx.fillStyle='#eeece6';ctx.fillRect
 zones.forEach((z,zi)=>{ctx.save();ctx.beginPath();z.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=zi%2?'rgba(72,116,166,.13)':'rgba(54,126,84,.13)';ctx.fill();ctx.strokeStyle=z.id===activeZoneId?'#278052':'#55728d';ctx.lineWidth=z.id===activeZoneId?4:2.5;ctx.setLineDash([9,5]);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#344d3d';ctx.font='bold 14px sans-serif';ctx.textAlign='center';const cx=z.points.reduce((a,p)=>a+p.x,0)/z.points.length,cy=z.points.reduce((a,p)=>a+p.y,0)/z.points.length;ctx.fillText(z.name,cx,cy);ctx.restore()})
 if(zoneMode&&zonePoints.length){ctx.save();ctx.beginPath();zonePoints.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.strokeStyle='#d18b22';ctx.lineWidth=3;ctx.setLineDash([7,5]);ctx.stroke();ctx.setLineDash([]);zonePoints.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,6,0,Math.PI*2);ctx.fillStyle='#d18b22';ctx.fill()});ctx.restore()}
 const sc=getScale(),collisions=getCollisionSet();items.forEach((it,i)=>{const w=(it.rot?it.h:it.w)*sc,h=(it.rot?it.w:it.h)*sc;ctx.save();ctx.translate(it.x,it.y);ctx.fillStyle=collisions.set.has(i)?'rgba(211,66,52,.30)':it.color;ctx.strokeStyle=collisions.set.has(i)?'#c9362b':(selectedSet.has(i)||i===selected?'#2059a5':'#625c52');ctx.lineWidth=collisions.set.has(i)?4:(selectedSet.has(i)||i===selected?4:2.5);ctx.beginPath();if(it.shape==='circle'){ctx.ellipse(0,0,w/2,h/2,0,0,Math.PI*2)}else if(it.shape==='round'){ctx.roundRect(-w/2,-h/2,w,h,Math.min(24,w/4,h/4))}else{ctx.rect(-w/2,-h/2,w,h)}ctx.fill();ctx.stroke();
-if(it.imageData){
- const im=getProductImage(it.imageData);
- if(im&&im.complete&&im.naturalWidth){
-  ctx.save();
-  ctx.beginPath();
-  if(it.shape==='circle')ctx.ellipse(0,0,w/2,h/2,0,0,Math.PI*2);
-  else if(it.shape==='round')ctx.roundRect(-w/2,-h/2,w,h,Math.min(24,w/4,h/4));
-  else ctx.rect(-w/2,-h/2,w,h);
-  ctx.clip();
-  ctx.fillStyle='#f2f0eb';ctx.fillRect(-w/2,-h/2,w,h);
-  const b=im._trimBounds||{x:0,y:0,w:im.naturalWidth,h:im.naturalHeight};
-  const ar=b.w/b.h, boxAr=(w-6)/(h-6);
-  let sx=b.x,sy=b.y,sw=b.w,sh=b.h;
-  // 사진 전체를 보존하면서 가구 영역 안에 크게 맞춰 표시
-  const scale=Math.min((w-6)/sw,(h-6)/sh),dw=sw*scale,dh=sh*scale;
-  ctx.drawImage(im,sx,sy,sw,sh,-dw/2,-dh/2,dw,dh);
-  ctx.restore();
-  ctx.strokeStyle=collisions.set.has(i)?'#c9362b':(selectedSet.has(i)||i===selected?'#2059a5':'#625c52');
-  ctx.lineWidth=collisions.set.has(i)?4:(selectedSet.has(i)||i===selected?4:2.5);
-  ctx.beginPath();if(it.shape==='circle')ctx.ellipse(0,0,w/2,h/2,0,0,Math.PI*2);else if(it.shape==='round')ctx.roundRect(-w/2,-h/2,w,h,Math.min(24,w/4,h/4));else ctx.rect(-w/2,-h/2,w,h);ctx.stroke();
- } else {drawFurnitureDetails(it,w,h);}
-}else{
- drawFurnitureDetails(it,w,h);
- ctx.fillStyle='#292820';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='bold 16px sans-serif';ctx.fillText(it.name.length>15?it.name.slice(0,14)+'…':it.name,0,-7);ctx.font='12px sans-serif';ctx.fillText(it.w+'×'+it.h+'cm',0,13);
-}
+drawFurnitureDetails(it,w,h);
+ctx.fillStyle='#51483e';ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='600 15px sans-serif';ctx.fillText(it.name.length>15?it.name.slice(0,14)+'…':it.name,0,-7);ctx.font='11px sans-serif';ctx.fillText(it.w+'×'+it.h+'cm',0,13);
 if(i===selected){ctx.fillStyle='#ffffff';ctx.strokeStyle='#2059a5';ctx.lineWidth=2;[[-w/2,-h/2],[w/2,-h/2],[-w/2,h/2],[w/2,h/2]].forEach(([hx,hy])=>{ctx.beginPath();ctx.rect(hx-6,hy-6,12,12);ctx.fill();ctx.stroke()})}
 ctx.restore()});
 if(calMode&&calPoints.length){ctx.fillStyle='#2363a8';calPoints.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,7,0,Math.PI*2);ctx.fill()});if(calPoints.length===2){ctx.strokeStyle='#2363a8';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(calPoints[0].x,calPoints[0].y);ctx.lineTo(calPoints[1].x,calPoints[1].y);ctx.stroke()}}
@@ -202,129 +130,6 @@ function renderFurnitureList(){
  b.append(sw,txt);b.onclick=()=>{selected=i;selectedSet=new Set([i]);draw()};box.appendChild(b)
  })
 }
-function loadProducts(){try{products=JSON.parse(localStorage.getItem(CATALOG_KEY)||'[]');if(!Array.isArray(products))products=[]}catch(e){products=[]}renderProducts()}
-function saveProducts(){localStorage.setItem(CATALOG_KEY,JSON.stringify(products));renderProducts()}
-function renderProducts(){
- const box=$('productCatalog');if(!box)return;box.innerHTML='';
- if(!products.length){const p=document.createElement('p');p.className='hint';p.textContent='아직 등록한 상품이 없어요.';box.appendChild(p);return}
- products.forEach((pr,i)=>{
-  const card=document.createElement('div');card.className='product-card';
-  const im=document.createElement('img');im.alt='';im.src=pr.imageData||pr.image||'';im.onerror=()=>{im.style.visibility='hidden'};
-  const info=document.createElement('div');const name=document.createElement('strong');name.textContent=pr.name;
-  const meta=document.createElement('small');meta.textContent=`${pr.w} × ${pr.h}cm · ${Number(pr.price||0).toLocaleString('ko-KR')}원`;
-  info.append(name,meta);const actions=document.createElement('div');actions.className='product-actions';
-  const place=document.createElement('button');place.className='primary';place.textContent='도면에 배치';place.onclick=()=>placeProduct(i);
-  actions.append(place);
-  if(pr.url){const link=document.createElement('button');link.textContent='구매 페이지';link.onclick=()=>window.open(pr.url,'_blank','noopener');actions.append(link)}
-  const del=document.createElement('button');del.textContent='삭제';del.onclick=()=>{if(confirm('이 상품을 목록에서 삭제할까요?')){products.splice(i,1);saveProducts()}};actions.append(del);
-  card.append(im,info,actions);box.append(card)
- })
-}
-function placeProduct(index){
- const pr=products[index];if(!pr)return;
- if(zones.length&&!getZone(activeZoneId)){alert('먼저 가구를 배치할 방을 선택해 주세요.');return}
- const it={name:pr.name,w:pr.w,h:pr.h,price:pr.price,x:view.x+view.w/2,y:view.y+view.h/2,rot:false,zoneId:activeZoneId,color:'#d7c4ad',shape:'rect',type:pr.type||'custom',productId:pr.id,purchaseUrl:pr.url||'',imageData:pr.imageData||''};
- const az=getZone(activeZoneId),spot=findFreeCenter(it,{x:az?az.points.reduce((a,p)=>a+p.x,0)/az.points.length:view.x+view.w/2,y:az?az.points.reduce((a,p)=>a+p.y,0)/az.points.length:view.y+view.h/2});
- if(!spot){alert('이 상품을 배치할 공간이 없어요. 방 영역을 넓히거나 상품 크기를 확인해 주세요.');return}
- pushHistory();it.x=spot.x;it.y=spot.y;items.push(it);selected=items.length-1;selectedSet=new Set([selected]);draw();$('status').textContent='상품을 도면에 배치했어요.'
-}
-let selectedProductImageData='',originalProductImageData='';
-function showProductPreview(src){
- const wrap=$('productImagePreview'),img=$('productImagePreviewImg');
- img.src=src;wrap.style.display='block';
-}
-$('productImageFile').addEventListener('change',()=>{
- const file=$('productImageFile').files && $('productImageFile').files[0];
- if(!file){selectedProductImageData='';originalProductImageData='';return}
- if(!['image/png','image/jpeg','image/webp'].includes(file.type)){alert('PNG, JPG, WEBP 이미지 파일만 선택해 주세요.');$('productImageFile').value='';return}
- if(file.size>10*1024*1024){alert('원본 사진은 10MB 이하로 선택해 주세요.');$('productImageFile').value='';return}
- const reader=new FileReader();
- reader.onload=()=>{
-  const im=new Image();
-  im.onload=()=>{
-   const scale=Math.min(1,1200/Math.max(im.width,im.height));
-   const c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*scale));c.height=Math.max(1,Math.round(im.height*scale));
-   c.getContext('2d').drawImage(im,0,0,c.width,c.height);
-   originalProductImageData=c.toDataURL('image/jpeg',0.9);
-   selectedProductImageData=originalProductImageData;
-   $('removeBgBtn').disabled=false;$('restoreOriginalBtn').disabled=false;
-   $('imageUploadStatus').textContent='✓ 사진 선택 완료. 바탕이 흰색이나 단색이면 배경 제거를 시도해 보세요.';
-   showProductPreview(selectedProductImageData);
-  };
-  im.onerror=()=>{$('imageUploadStatus').textContent='이미지를 읽지 못했어요. 다른 사진을 선택해 주세요.'};
-  im.src=reader.result;
- };
- reader.readAsDataURL(file);
-});
-$('restoreOriginalBtn').onclick=()=>{
- if(!originalProductImageData)return;
- selectedProductImageData=originalProductImageData;showProductPreview(selectedProductImageData);
- $('imageUploadStatus').textContent='원본 사진으로 되돌렸어요.';
-};
-$('removeBgBtn').onclick=async()=>{
- if(!originalProductImageData)return;
- const btn=$('removeBgBtn');btn.disabled=true;btn.textContent='배경 제거 중...';
- $('imageUploadStatus').textContent='사진 가장자리의 흰색·단색 배경을 분석하고 있어요.';
- try{
-  const im=new Image();im.src=originalProductImageData;
-  await new Promise((resolve,reject)=>{im.onload=resolve;im.onerror=reject});
-  const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;
-  const cx=c.getContext('2d',{willReadFrequently:true});cx.drawImage(im,0,0);
-  const frame=cx.getImageData(0,0,c.width,c.height),d=frame.data,w=c.width,h=c.height,n=w*h;
-  // Estimate a mostly uniform background from small patches in the four corners.
-  const corners=[[2,2],[w-3,2],[2,h-3],[w-3,h-3]];
-  const samples=[];
-  for(const [px,py] of corners)for(let yy=-1;yy<=1;yy++)for(let xx=-1;xx<=1;xx++){
-   const x=Math.max(0,Math.min(w-1,px+xx)),y=Math.max(0,Math.min(h-1,py+yy)),k=(y*w+x)*4;
-   samples.push([d[k],d[k+1],d[k+2]]);
-  }
-  const bg=[0,1,2].map(ch=>samples.reduce((a,v)=>a+v[ch],0)/samples.length);
-  const cornerSpread=Math.max(...samples.map(v=>Math.hypot(v[0]-bg[0],v[1]-bg[1],v[2]-bg[2])));
-  if(cornerSpread>105)throw new Error('사진 모서리 배경이 일정하지 않아요. 흰색 또는 단색 배경 사진을 사용해 주세요.');
-  const seen=new Uint8Array(n),queue=new Int32Array(n),alpha=new Uint8Array(n);
-  let head=0,tail=0;
-  const threshold=76,soft=28;
-  function add(x,y){
-   if(x<0||y<0||x>=w||y>=h)return;
-   const idx=y*w+x;if(seen[idx])return;
-   const k=idx*4,dist=Math.hypot(d[k]-bg[0],d[k+1]-bg[1],d[k+2]-bg[2]);
-   if(dist<=threshold){seen[idx]=1;queue[tail++]=idx;}
-  }
-  // Flood-fill only background connected to the image boundary, preserving enclosed light details.
-  for(let x=0;x<w;x++){add(x,0);add(x,h-1)}
-  for(let y=0;y<h;y++){add(0,y);add(w-1,y)}
-  while(head<tail){
-   const idx=queue[head++],x=idx%w,y=(idx/w)|0;
-   add(x-1,y);add(x+1,y);add(x,y-1);add(x,y+1);
-  }
-  let removed=0;
-  for(let i=0;i<n;i++){
-   const k=i*4;
-   if(seen[i]){d[k+3]=0;removed++;}
-   else{
-    const dist=Math.hypot(d[k]-bg[0],d[k+1]-bg[1],d[k+2]-bg[2]);
-    if(dist<threshold+soft){
-     const a=Math.max(0,Math.min(1,(dist-threshold)/soft));
-     d[k+3]=Math.round(d[k+3]*a);
-    }
-   }
-  }
-  if(removed<n*.005)throw new Error('배경을 충분히 구분하지 못했어요. 흰색·단색 배경 사진을 사용하거나 원본으로 되돌려 주세요.');
-  cx.putImageData(frame,0,0);
-  selectedProductImageData=c.toDataURL('image/png');
-  showProductPreview(selectedProductImageData);
-  $('imageUploadStatus').textContent='✓ 배경 제거 완료! 가장자리와 색상이 비슷한 가구 부분은 일부 잘릴 수 있으니 미리보기를 확인해 주세요.';
- }catch(err){
-  $('imageUploadStatus').textContent=err.message||'배경 제거에 실패했어요. 원본 사진을 유지할게요.';
- }finally{btn.disabled=false;btn.textContent='✂ 배경 제거하기'}
-};
-$('saveProduct').onclick=()=>{
- const name=$('productName').value.trim(),w=+$('productW').value,h=+$('productH').value,price=+$('productPrice').value;
- if(!name){alert('상품명을 입력해 주세요.');return}
- if(w<10||h<10||w>1500||h>1500||price<0){alert('상품 크기와 가격을 확인해 주세요.');return}
- products.push({id:'product-'+Date.now(),name,w,h,price,image:'',imageData:selectedProductImageData,url:'',type:$('productType').value});
- saveProducts();selectedProductImageData='';originalProductImageData='';$('productImageFile').value='';$('productImagePreview').style.display='none';$('productImagePreviewImg').src='';$('removeBgBtn').disabled=true;$('restoreOriginalBtn').disabled=true;$('imageUploadStatus').textContent='사진을 선택한 뒤 배경 제거를 눌러보세요. 흰색·단색 배경 사진에서 가장 잘 작동해요.';$('productName').value='';
-};
 function update(){$('selectedInfo').textContent=selected<0?'도면에서 가구를 선택해 주세요.':(selectedSet.size>1?selectedSet.size+'개 가구 선택됨':items[selected].name+' 선택됨');if(selected>=0){const it=items[selected];$('editW').value=it.w;$('editH').value=it.h;$('editName').value=it.name;$('editPrice').value=it.price;$('editColor').value=it.color||'#d7c4ad';$('editShape').value=it.shape||'rect';$('editType').value=it.type||'custom'}const collisionInfo=getCollisionSet();
 $('summary').textContent='배치된 가구 '+items.length+'개'+(collisionInfo.pairs.length?' · 겹침 '+collisionInfo.pairs.length+'곳':' · 가구 겹침 없음');
 $('collisionStatus').textContent=collisionInfo.pairs.length?'⚠ 가구가 서로 겹쳐 있어요. 빨간색 테두리로 표시된 가구를 옮겨 주세요. 겹친 가구 쌍: '+collisionInfo.pairs.map(([a,b])=>items[a].name+' ↔ '+items[b].name).join(', '):'';
@@ -394,6 +199,6 @@ $('share').onclick=async()=>{draw();canvas.toBlob(async blob=>{if(!blob){alert('
 $('undo').onclick=()=>restoreHistory(historyIndex-1);
 $('redo').onclick=()=>restoreHistory(historyIndex+1);
 window.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();restoreHistory(historyIndex+(e.shiftKey?1:-1))}else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();restoreHistory(historyIndex+1)}});
-restoreState();loadProducts();pushHistory();refreshRooms();draw();
+restoreState();pushHistory();refreshRooms();draw();
 })();
 </script></body></html>
